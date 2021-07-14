@@ -4,13 +4,18 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^13.5.3",
+    "jest": "^27.0.6",
     "typescript": "^3.7.5"
+  },
+  "jest": {
+    "extensionsToTreatAsEsm": [".ts"]
   },
   "scripts": {
     "start": "node source/index.js",
     "build-source": "node node_modules/typescript/bin/tsc -p source/tsconfig.json",
     "build-source-watch": "node node_modules/typescript/bin/tsc -w -p source/tsconfig.json",
     "build-source-debug": "node node_modules/typescript/bin/tsc -p source/tsconfig.debug.json",
-    "build-source-debug-watch": "node node_modules/typescript/bin/tsc -w -p source/tsconfig.debug.json"
+    "build-source-debug-watch": "node node_modules/typescript/bin/tsc -w -p source/tsconfig.debug.json",
+    "test": "jest"
   }
 }
