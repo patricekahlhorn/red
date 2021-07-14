@@ -3,11 +3,12 @@ import {
     getSumOfNumbersOfText,
     getNumberOfVowels,
     getSentencesWithMostNumbers,
-    buildTextFromCharNumbers
+    buildTextFromCharNumbers, decipher
 } from "./module/text";
 const http = require("http");
 
 const data = readFileSync('clear_smaller.txt', 'utf8')
+// console.log(decipher())
 
 console.log(getSumOfNumbersOfText(data))
 console.log(getNumberOfVowels(data))

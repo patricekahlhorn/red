@@ -1,5 +1,6 @@
-import {readFileSync} from "fs";
+import {createReadStream, createWriteStream, readFileSync} from "fs";
 import {createDecipheriv} from "crypto";
+import {createGunzip} from "zlib";
 
 export const getSumOfNumbersOfText = (text: string) => {
     const arrayOfStrings = text.match(/\d/g) ?? []
@@ -47,11 +48,11 @@ export const decipher = () => {
     const encrypted = readFileSync('secret.enc', 'utf8')
     const authTag = readFileSync('auth.txt', )
     const iv = readFileSync('iv.txt', )
-    const key = readFileSync('secret.key', )
+    const key = readFileSync('secret.key', 'utf8')
 
-    const decipher = createDecipheriv('aes-256-gcm', Buffer.alloc(32, key), iv);
+    const decipher = createDecipheriv('aes-256-gcm', key.substr(0, 32), iv);
     decipher.setAuthTag(authTag);
-    var decText = decipher.update(encrypted, 'hex', 'utf8');
-    decText += decipher.final('utf8');
-    console.log("D: " + decText);
+
+
+    return decipher
 }

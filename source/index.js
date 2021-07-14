@@ -4,6 +4,7 @@ const fs_1 = require("fs");
 const text_1 = require("./module/text");
 const http = require("http");
 const data = fs_1.readFileSync('clear_smaller.txt', 'utf8');
+// console.log(decipher())
 console.log(text_1.getSumOfNumbersOfText(data));
 console.log(text_1.getNumberOfVowels(data));
 const sentencesWithMostNumbers = text_1.getSentencesWithMostNumbers(data);
