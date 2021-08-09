@@ -1,26 +1,25 @@
-import {readFileSync} from "fs";
-import {
-    getSumOfNumbersOfText,
-    getNumberOfVowels,
-    getSentencesWithMostNumbers,
-    buildTextFromCharNumbers, decipher
-} from "./module/text";
-const http = require("http");
+import {readDecryptedFile} from "./module/decryptor";
+import {getSumOfNumbersOfText, getVowelCountWithWeight} from "./module/textparser";
 
-const data = readFileSync('clear_smaller.txt', 'utf8')
-// console.log(decipher())
+(async () => {
+    console.time('app')
+    let sumOfAllNumbers = 0
+    let vowelCount = 0
+    let sentencesNumberSum: number[] = []
+    await readDecryptedFile(async (chunk) => {
+            sumOfAllNumbers = getSumOfNumbersOfText(chunk) + sumOfAllNumbers
+            vowelCount = getVowelCountWithWeight(chunk) + vowelCount
+            chunk.split(/\.|!|\?/).forEach((sentence) => {
+                sentencesNumberSum.push(getSumOfNumbersOfText(sentence))
+            })
+        }
+    );
 
-console.log(getSumOfNumbersOfText(data))
-console.log(getNumberOfVowels(data))
-const sentencesWithMostNumbers = getSentencesWithMostNumbers(data)
-const text = buildTextFromCharNumbers(sentencesWithMostNumbers)
-console.log(text)
 
-const requestListener = function (req, res) {
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.writeHead(200);
-    res.end(text);
-};
+    console.log(`Sum of all Numbers: ${sumOfAllNumbers}`)
+    console.log(`VowelCount: ${vowelCount}`)
+    console.log(`Sum of all Numbers plus VowelCount: ${sumOfAllNumbers + vowelCount}`)
+    console.timeEnd('app')
 
-const server = http.createServer(requestListener);
-server.listen(3000, '127.0.0.1');
+})();
+

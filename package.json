@@ -5,10 +5,13 @@
   "devDependencies": {
     "@types/node": "^13.5.3",
     "jest": "^27.0.6",
+    "ts-node": "^10.2.0",
     "typescript": "^3.7.5"
   },
   "jest": {
-    "extensionsToTreatAsEsm": [".ts"]
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ]
   },
   "scripts": {
     "start": "node source/index.js",
