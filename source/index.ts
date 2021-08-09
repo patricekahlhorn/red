@@ -6,10 +6,10 @@ import {getSumOfNumbersOfText, getVowelCountWithWeight} from "./module/textparse
     let sumOfAllNumbers = 0
     let vowelCount = 0
     let sentencesNumberSum: number[] = []
-    await readDecryptedFile(async (chunk) => {
+    await readDecryptedFile(async (chunk: string) => {
             sumOfAllNumbers = getSumOfNumbersOfText(chunk) + sumOfAllNumbers
             vowelCount = getVowelCountWithWeight(chunk) + vowelCount
-            chunk.split(/\.|!|\?/).forEach((sentence) => {
+            chunk.split(/\.|!|\?/).forEach((sentence: string) => {
                 sentencesNumberSum.push(getSumOfNumbersOfText(sentence))
             })
         }
